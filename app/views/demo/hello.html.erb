@@ -1,0 +1,17 @@
+<h1>Hello World</h1>
+
+<% @array.each do |i| %>
+	<%= i %> 
+	<br>
+<% end %>
+
+<br>
+ID: <%= @id %>
+<br>
+ID: <%= params[:id] %>
+<br>
+Page <%= @page %>
+<br>
+Next Page <%= @page.to_i + 1 %>
+<br>
+<%= link_to("redir", {:action => 'redir'}) %>
