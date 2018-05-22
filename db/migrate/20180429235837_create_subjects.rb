@@ -6,5 +6,6 @@ class CreateSubjects < ActiveRecord::Migration[5.2]
       t.boolean "visible", :defaults => false
       t.timestamps
     end
+		add_index :subjects, [:name, :position]
   end
 end

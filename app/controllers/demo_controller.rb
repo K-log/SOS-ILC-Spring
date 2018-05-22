@@ -6,12 +6,17 @@ class DemoController < ApplicationController
 	
 	def hello
 		@subjects = Subject.all
-		@id = params[:id]
-		@page = params[:page]
 		render('hello')
 	end
 	
+	def hello_params
+		@subject = Subject.find(params[:id])
+		@page = @subject.pages.find(params[:page])
+		@id = params[:id]
+		render('hello_params')
+	end
+	
 	def redir
-		redirect_to(:controller => 'demo', :action => 'index')
+		redirect_to("demo/index")
 	end
 end

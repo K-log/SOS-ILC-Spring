@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Learn: <%= @page_title || "User Area"%></title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+		
+		<style>
+			span.status {
+				display: block;
+				width: 10px; 
+				height: 10px;
+				margin: 0.25em;
+				padding: 0l
+				border: 1px solid #000000;
+			}
+			span.status.true{ background: green; color: green; }
+			span.status.false{ background: red; color: red; }
+		</style>
+		
+  </head>
+  <body>
+		
+		<% if !flash[:notice].blank? %>
+	    <div class="notice">
+				<%= flash[:notice] %>
+			</div>
+		<% end %>
+		
+		<%= link_to("<< Back to Index", demo_index_path, :class => 'back-link') %>
+
+	
+	
+    <%= yield %>
+  </body>
+</html>

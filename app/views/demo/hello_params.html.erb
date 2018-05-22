@@ -1,0 +1,23 @@
+<h1>Hello World with Params</h1>
+
+Name: <%= @subject.name %> |
+Is Visible: <%= @subject.visible %> |
+ID: <%= @subject.id %> |
+Created At: <%= @subject.created_at %>
+<% @subject.pages.each do |p| %> 
+  <ul>
+    <li>Pages: <%= p.name %> | ID: <%= p.id %>  </li>
+  </ul>
+<% end %>
+<br>
+<br>
+<br>
+ID: <%= @id %>
+<br>
+Subject With ID: <%= @subject.name %>
+<br>
+Page: <%= @page.name %>
+<br>
+Next Page ID: <%= @page.id + 1 %>
+<br>
+<%= link_to("redir", "index") %>

@@ -1,17 +1,17 @@
 <h1>Hello World</h1>
 
 <% @subjects.each do |i| %>
-	<%= i.name %> 
-	<br>
+  Name: <%= i.name %> |
+  Is Visible: <%= i.visible %> |
+  ID: <%= i.id %> |
+  Created At: <%= i.created_at %>
+
+  <% i.pages.each do |p| %> 
+    <ul>
+      <li>Pages: <%= p.name %> | ID: <%= p.id %>  </li>
+    </ul>
+  <% end %>
+  <br><br>
 <% end %>
 
-<br>
-ID: <%= @id %>
-<br>
-ID: <%= params[:id] %>
-<br>
-Page <%= @page %>
-<br>
-Next Page <%= @page.to_i + 1 %>
-<br>
-<%= link_to("redir", {:action => 'redir'}) %>
+<%= link_to("redir", "index") %>
