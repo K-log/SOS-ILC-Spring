@@ -12,6 +12,7 @@ class SubjectsController < ApplicationController
 
   def new
 		@subject = Subject.new(:name => "Default", :visible => false)
+		@subject_count = Subject.count + 1
   end
 	
 	def create
@@ -25,12 +26,14 @@ class SubjectsController < ApplicationController
 		else
 			# If save fails, redisplay the form so user can fix the problems
 			flash[:error] = "Create unsuccessful! Please try again."
+			@subject_count = Subject.count + 1
 			render('new')
 		end
 	end
 
   def edit
 		@subject = Subject.find(params[:id])
+		@subject_count = Subject.count
   end
 
 	def update
@@ -44,6 +47,7 @@ class SubjectsController < ApplicationController
 		else
 			# If save fails, redisplay the form so user can fix the problems
 			flash[:error] = "Update unsuccessful! Please try again."
+			@subject_count = Subject.count + 1
 			render('edit')
 		end
 	end

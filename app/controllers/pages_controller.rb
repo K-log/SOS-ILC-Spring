@@ -2,6 +2,10 @@ class PagesController < ApplicationController
 
 	layout 'user'
 
+	before_action :find_subjects, :only => [:new, :create, :edit, :update]
+	before_action :set_page_count :only => [:new, :create, :edit, :update]
+	 
+	 
   def index
 		@pages = Page.sorted
   end
@@ -12,6 +16,7 @@ class PagesController < ApplicationController
 
   def new
 		@page = Page.new
+		@users = User.sorted
   end
 
   def create
@@ -21,12 +26,14 @@ class PagesController < ApplicationController
 			redirect_to(pages_path)
 		else
 			flash[:error] = "Failed to save new page."
+			@users = User.sorted
 			render("new")
 		end
   end
 
   def edit
 		@page = Page.find(params[:id])
+		@users = User.sorted
   end
 
   def update
@@ -36,6 +43,7 @@ class PagesController < ApplicationController
 			redirect_to(pages_path)
 		else
 			flash[:error] = "Failed to update page."
+			@users = User.sorted
 			render("edit")
 		end
   end
@@ -55,6 +63,16 @@ class PagesController < ApplicationController
 	
 	def page_params
 		params.require(:page).permit(:subject_id, :user_id, :name, :position, :visible, :permalink)
+	end
+	
+	def find_subjects
+		@subjects = Subject.sorted
+	end
+	
+	def set_page_count
+		@page_count = Page.count
+		if(params[:action] == 'new' || params[:action] == 'create'
+			@page_count += 1
 	end
 	
 end

@@ -13,6 +13,8 @@ class SectionsController < ApplicationController
 
   def new
 		@section = Section.new
+		@section_count = Section.count + 1
+		@pages = Page.sorted
   end
 
   def create
@@ -22,12 +24,16 @@ class SectionsController < ApplicationController
 			redirect_to(sections_path)
 		else
 			flash[:error] = "Failed to save new section."
+			@section_count = Section.count + 1
+			@pages = Page.sorted
 			render("new")
 		end
   end
 
   def edit
 		@section = Section.find(params[:id])
+	  @section_count = Section.count
+		@pages = Page.sorted
   end
 
   def update
@@ -37,6 +43,8 @@ class SectionsController < ApplicationController
 			redirect_to(sections_path)
 		else
 			flash[:error] = "Failed to update section."
+			@section_count = Section.count
+			@pages = Page.sorted
 			render("edit")
 		end
   end
